@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Línea de Tiempo: Historia del Cálculo</title>
+<title>Línea de Tiempo Vertical: Historia del Cálculo</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,7 +21,7 @@
   }
 
   main {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 30px auto;
     padding: 0 20px;
   }
@@ -32,14 +32,20 @@
     text-align: center;
   }
 
+  p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify;
+  }
+
+  /* ===== Línea de tiempo vertical ===== */
   ul.timeline {
-    display: flex;
-    flex-direction: row; /* Línea horizontal */
-    gap: 15px;
-    overflow-x: auto;
-    padding: 10px;
     list-style: none;
-    margin: 20px 0;
+    padding: 0;
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
   }
 
   ul.timeline li {
@@ -47,16 +53,13 @@
     background: #ffffff;
     border: 2px solid #4a90e2;
     border-radius: 10px;
-    min-width: 200px;
-    text-align: center;
     cursor: grab;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: transform 0.2s, background 0.3s;
-    flex-shrink: 0; /* que no se achique */
   }
 
   ul.timeline li:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     background: #e6f2ff;
   }
 
@@ -91,116 +94,135 @@
 </head>
 <body>
 <header>
-  <h1>Línea de Tiempo: Historia del Cálculo</h1>
+  <h1>Historia del Cálculo y las Matemáticas</h1>
 </header>
 
 <main>
-  <h2>Organiza los eventos en orden cronológico</h2>
-  <p style="text-align:center;">Arrastra las tarjetas para colocarlas en la secuencia correcta:</p>
+  <!-- ===== Texto narrativo ===== -->
+  <section id="texto">
+    <h2>Texto Narrativo</h2>
+    <p>Desde los albores de la humanidad, mucho antes de que existieran los libros o las escuelas, el ser humano ya observaba el mundo con curiosidad matemática. Hace más de <strong>5.000 años</strong>, en las civilizaciones de <strong>Egipto</strong> y <strong>Babilonia</strong>, los escribas utilizaban tablillas de arcilla y papiros para registrar cosechas, calcular impuestos y medir terrenos. En Egipto, hacia el <strong>año 2.000 a. C.</strong>, los constructores de pirámides aplicaban conocimientos de geometría empírica para mantener las proporciones perfectas de sus monumentos. En Babilonia, alrededor del <strong>1.800 a. C.</strong>, se desarrolló un sistema numérico basado en el <strong>número 60</strong>, que todavía usamos hoy en los minutos y segundos del reloj.</p>
 
-  <ul id="timeline" class="timeline">
-    <li data-orden="1">Hace más de 5.000 años: Egipto y Babilonia registran cosechas</li>
-    <li data-orden="2">2000 a. C.: Constructores egipcios aplican geometría en pirámides</li>
-    <li data-orden="3">1800 a. C.: Babilonia desarrolla sistema base 60</li>
-    <li data-orden="4">Siglos VI–III a. C.: Grecia, Pitágoras, Euclides y Arquímedes</li>
-    <li data-orden="5">300 a. C.: Euclides escribe Los Elementos</li>
-    <li data-orden="6">Siglo III a. C.: Arquímedes usa método de agotamiento</li>
-    <li data-orden="7">Siglo V d. C.: Caída del Imperio Romano</li>
-    <li data-orden="8">Siglo IX: Al-Juarismi introduce álgebra; número cero en India</li>
-    <li data-orden="9">Siglos XV–XVI: Renacimiento europeo; Descartes y Fermat</li>
-    <li data-orden="10">Siglo XVII: Surge el cálculo (Newton y Leibniz)</li>
-    <li data-orden="11">1687: Newton publica Principia Mathematica</li>
-    <li data-orden="12">Siglos XVIII–XIX: Euler, Lagrange, Cauchy y Riemann perfeccionan análisis</li>
-    <li data-orden="13">Siglo XX: Lebesgue y Robinson</li>
-    <li data-orden="14">Siglo XXI: Matemáticas en IA e ingeniería espacial</li>
-  </ul>
+    <p>Entre los <strong>siglos VI y III a. C.</strong>, en la antigua <strong>Grecia</strong>, pensadores como <strong>Pitágoras</strong>, <strong>Euclides</strong> y <strong>Arquímedes</strong> sentaron las bases de la geometría y la lógica. Euclides, hacia el <strong>300 a. C.</strong>, escribió <em>Los Elementos</em>. Arquímedes, en el <strong>siglo III a. C.</strong>, empleó el “método de agotamiento”, anticipando ideas del cálculo integral.</p>
 
-  <button id="comprobar">Comprobar Orden</button>
-  <p id="resultado"></p>
+    <p>Con la caída del Imperio Romano en el <strong>siglo V d. C.</strong>, gran parte del conocimiento matemático griego fue preservado por el <strong>mundo islámico</strong>. Entre los <strong>siglos VIII y XIII</strong>, en lugares como <strong>Bagdad</strong>, se tradujeron obras griegas y se desarrollaron nuevos conceptos. En el <strong>siglo IX</strong>, <strong>Al-Juarismi</strong> introdujo el álgebra y los matemáticos de India perfeccionaron el número cero y el sistema decimal.</p>
+
+    <p>Durante el <strong>Renacimiento europeo (siglos XV–XVI)</strong>, Descartes y Fermat establecieron la geometría analítica. En el <strong>siglo XVII</strong>, surgió el cálculo gracias a <strong>Newton</strong> y <strong>Leibniz</strong>. Newton publicó <em>Principia Mathematica</em> en <strong>1687</strong>. Durante los <strong>siglos XVIII y XIX</strong>, Euler, Lagrange, Cauchy y Riemann perfeccionaron el análisis matemático. En el <strong>siglo XX</strong>, Lebesgue y Robinson aportaron nuevos métodos de integración y análisis no estándar. Hoy, en el <strong>siglo XXI</strong>, las matemáticas son esenciales en la tecnología moderna.</p>
+  </section>
+
+  <!-- ===== Línea de tiempo vertical ===== -->
+  <section id="juego">
+    <h2>Juego: Organiza la Línea de Tiempo</h2>
+    <p style="text-align:center;">Arrastra las tarjetas para colocarlas en orden cronológico:</p>
+
+    <ul id="timeline" class="timeline">
+      <li data-orden="1">Hace más de 5.000 años: Egipto y Babilonia registran cosechas</li>
+      <li data-orden="2">2000 a. C.: Constructores egipcios aplican geometría en pirámides</li>
+      <li data-orden="3">1800 a. C.: Babilonia desarrolla sistema base 60</li>
+      <li data-orden="4">Siglos VI–III a. C.: Grecia, Pitágoras, Euclides y Arquímedes</li>
+      <li data-orden="5">300 a. C.: Euclides escribe Los Elementos</li>
+      <li data-orden="6">Siglo III a. C.: Arquímedes usa método de agotamiento</li>
+      <li data-orden="7">Siglo V d. C.: Caída del Imperio Romano</li>
+      <li data-orden="8">Siglo IX: Al-Juarismi introduce álgebra; número cero en India</li>
+      <li data-orden="9">Siglos XV–XVI: Renacimiento europeo; Descartes y Fermat</li>
+      <li data-orden="10">Siglo XVII: Surge el cálculo (Newton y Leibniz)</li>
+      <li data-orden="11">1687: Newton publica Principia Mathematica</li>
+      <li data-orden="12">Siglos XVIII–XIX: Euler, Lagrange, Cauchy y Riemann perfeccionan análisis</li>
+      <li data-orden="13">Siglo XX: Lebesgue y Robinson</li>
+      <li data-orden="14">Siglo XXI: Matemáticas en IA e ingeniería espacial</li>
+    </ul>
+
+    <button id="comprobar">Comprobar Orden</button>
+    <p id="resultado"></p>
+  </section>
 </main>
 
+<footer>
+  <p>&copy; 2025 Dylan Tirado</p>
+</footer>
+
 <script>
-  const lista = document.getElementById('timeline');
-  const resultado = document.getElementById('resultado');
+const lista = document.getElementById('timeline');
+const resultado = document.getElementById('resultado');
 
-  // ===== Función para desordenar los elementos al cargar =====
-  function shuffleList() {
-    for (let i = lista.children.length; i >= 0; i--) {
-      lista.appendChild(lista.children[Math.random() * i | 0]);
-    }
+// ===== Desordenar elementos al cargar =====
+function shuffleList() {
+  for (let i = lista.children.length; i >= 0; i--) {
+    lista.appendChild(lista.children[Math.random() * i | 0]);
   }
-  shuffleList();
+}
+shuffleList();
 
-  let dragSrcEl = null;
+let dragSrcEl = null;
 
-  function handleDragStart(e) {
-    dragSrcEl = this;
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', this.outerHTML);
-    this.classList.add('dragging');
+function handleDragStart(e) {
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.outerHTML);
+  this.classList.add('dragging');
+}
+
+function handleDragOver(e) {
+  if(e.preventDefault) e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  return false;
+}
+
+function handleDrop(e){
+  if(e.stopPropagation) e.stopPropagation();
+  if(dragSrcEl !== this){
+    const temp = this.cloneNode(true);
+    this.replaceWith(dragSrcEl.cloneNode(true));
+    dragSrcEl.replaceWith(temp);
+    addDragEvents();
   }
+  return false;
+}
 
-  function handleDragOver(e) {
-    if (e.preventDefault) e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-    return false;
-  }
+function handleDragEnd(){
+  this.classList.remove('dragging');
+}
 
-  function handleDrop(e) {
-    if (e.stopPropagation) e.stopPropagation();
-    if (dragSrcEl !== this) {
-      const temp = this.cloneNode(true);
-      this.replaceWith(dragSrcEl.cloneNode(true));
-      dragSrcEl.replaceWith(temp);
-      addDragEvents();
-    }
-    return false;
-  }
+function addDragEvents(){
+  const items = lista.querySelectorAll('li');
+  items.forEach(item=>{
+    item.setAttribute('draggable', true);
+    item.removeEventListener('dragstart', handleDragStart);
+    item.removeEventListener('dragover', handleDragOver);
+    item.removeEventListener('drop', handleDrop);
+    item.removeEventListener('dragend', handleDragEnd);
 
-  function handleDragEnd() {
-    this.classList.remove('dragging');
-  }
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+    item.addEventListener('dragend', handleDragEnd);
+  });
+}
+addDragEvents();
 
-  function addDragEvents() {
-    const items = lista.querySelectorAll('li');
-    items.forEach(item => {
-      item.setAttribute('draggable', true);
-      item.removeEventListener('dragstart', handleDragStart);
-      item.removeEventListener('dragover', handleDragOver);
-      item.removeEventListener('drop', handleDrop);
-      item.removeEventListener('dragend', handleDragEnd);
+document.getElementById('comprobar').addEventListener('click', function(){
+  const elementos = Array.from(lista.querySelectorAll('li'));
+  let correctos = 0;
 
-      item.addEventListener('dragstart', handleDragStart);
-      item.addEventListener('dragover', handleDragOver);
-      item.addEventListener('drop', handleDrop);
-      item.addEventListener('dragend', handleDragEnd);
-    });
-  }
-  addDragEvents();
-
-  document.getElementById('comprobar').addEventListener('click', function() {
-    const elementos = Array.from(lista.querySelectorAll('li'));
-    let correctos = 0;
-
-    elementos.forEach((el,i)=>{
-      if(parseInt(el.getAttribute('data-orden'))===i+1){
-        el.style.background="#d4edda";
-        el.style.borderColor="#28a745";
-        correctos++;
-      }else{
-        el.style.background="#f8d7da";
-        el.style.borderColor="#dc3545";
-      }
-    });
-
-    if(correctos===elementos.length){
-      resultado.textContent="¡Perfecto! Todos los eventos están en orden.";
-      resultado.style.color="#28a745";
+  elementos.forEach((el,i)=>{
+    if(parseInt(el.getAttribute('data-orden'))===i+1){
+      el.style.background="#d4edda";
+      el.style.borderColor="#28a745";
+      correctos++;
     }else{
-      resultado.textContent=`Hay ${elementos.length - correctos} evento(s) fuera de lugar.`;
-      resultado.style.color="#dc3545";
+      el.style.background="#f8d7da";
+      el.style.borderColor="#dc3545";
     }
   });
+
+  if(correctos===elementos.length){
+    resultado.textContent="¡Perfecto! Todos los eventos están en orden.";
+    resultado.style.color="#28a745";
+  }else{
+    resultado.textContent=`Hay ${elementos.length - correctos} evento(s) fuera de lugar.`;
+    resultado.style.color="#dc3545";
+  }
+});
 </script>
 </body>
 </html>

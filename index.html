@@ -5,44 +5,93 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Historia del Cálculo y las Matemáticas</title>
   <style>
+    /* ===== Estilos generales ===== */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
+      background: #f0f4f8;
+      color: #333;
     }
 
     header {
-      background: #4a90e2;
+      background: linear-gradient(90deg, #4a90e2, #50e3c2);
       color: white;
-      padding: 15px;
+      padding: 20px;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
 
     nav a {
       color: white;
-      margin: 0 10px;
+      margin: 0 15px;
       text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     main {
-      padding: 20px;
       max-width: 900px;
-      margin: auto;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #4a90e2;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #4a90e2;
+      color: white;
+      margin-top: 40px;
+    }
+
+    /* ===== Juego de línea de tiempo ===== */
+    #juego p {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 20px;
     }
 
     ul.sortable {
       list-style: none;
       padding: 0;
-      max-width: 600px;
       margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
     }
 
     ul.sortable li {
-      padding: 10px;
-      margin: 5px 0;
-      background: #f0f0f0;
-      border: 1px solid #ccc;
+      padding: 15px 20px;
+      background: #ffffff;
+      border: 2px solid #4a90e2;
+      border-radius: 10px;
+      min-width: 220px;
+      text-align: center;
       cursor: grab;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    ul.sortable li:hover {
+      background: #e6f2ff;
+      transform: scale(1.05);
     }
 
     ul.sortable li.dragging {
@@ -51,15 +100,27 @@
 
     button {
       display: block;
-      margin: 20px auto;
-      padding: 10px 20px;
+      margin: 30px auto;
+      padding: 12px 25px;
       font-size: 16px;
+      background: #50e3c2;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #4acbb1;
     }
 
     #resultado {
       text-align: center;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 20px;
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -68,11 +129,12 @@
     <h1>Historia del Cálculo y las Matemáticas</h1>
     <nav>
       <a href="#texto">Texto</a> |
-      <a href="#juego">Juego Línea de Tiempo</a>
+      <a href="#juego">Juego</a>
     </nav>
   </header>
 
   <main>
+    <!-- ===== Texto narrativo ===== -->
     <section id="texto">
       <h2>Texto Narrativo</h2>
       <p>Desde los albores de la humanidad, mucho antes de que existieran los libros o las escuelas, el ser humano ya observaba el mundo con curiosidad matemática. Hace más de <strong>5.000 años</strong>, en las civilizaciones de <strong>Egipto</strong> y <strong>Babilonia</strong>, los escribas utilizaban tablillas de arcilla y papiros para registrar cosechas, calcular impuestos y medir terrenos. En Egipto, hacia el <strong>año 2.000 a. C.</strong>, los constructores de pirámides aplicaban conocimientos de geometría empírica para mantener las proporciones perfectas de sus monumentos. En Babilonia, alrededor del <strong>1.800 a. C.</strong>, se desarrolló un sistema numérico basado en el <strong>número 60</strong>, que todavía usamos hoy en los minutos y segundos del reloj.</p>
@@ -84,9 +146,10 @@
       <p>Durante el <strong>Renacimiento europeo (siglos XV–XVI)</strong>, Descartes y Fermat establecieron la geometría analítica. En el <strong>siglo XVII</strong>, surgió el cálculo gracias a <strong>Newton</strong> y <strong>Leibniz</strong>. Newton publicó <em>Principia Mathematica</em> en <strong>1687</strong>. Durante los <strong>siglos XVIII y XIX</strong>, Euler, Lagrange, Cauchy y Riemann perfeccionaron el análisis matemático. En el <strong>siglo XX</strong>, Lebesgue y Robinson aportaron nuevos métodos de integración y análisis no estándar. Hoy, en el <strong>siglo XXI</strong>, las matemáticas son esenciales en la tecnología moderna.</p>
     </section>
 
+    <!-- ===== Juego ===== -->
     <section id="juego">
       <h2>Juego: Ordena la Línea de Tiempo</h2>
-      <p>Arrastra los eventos para colocarlos en el orden correcto:</p>
+      <p>Arrastra las tarjetas para colocarlas en el orden correcto:</p>
 
       <ul id="eventos" class="sortable">
         <li data-orden="1">Hace más de 5.000 años: Egipto y Babilonia registran cosechas</li>
@@ -115,6 +178,7 @@
   </footer>
 
   <script>
+    // ===== Drag & Drop =====
     const lista = document.getElementById('eventos');
     const resultado = document.getElementById('resultado');
     let dragSrcEl = null;
@@ -135,8 +199,9 @@
     function handleDrop(e) {
       if (e.stopPropagation) e.stopPropagation();
       if (dragSrcEl != this) {
+        const temp = dragSrcEl.innerHTML;
         dragSrcEl.innerHTML = this.innerHTML;
-        this.innerHTML = e.dataTransfer.getData('text/html');
+        this.innerHTML = temp;
       }
       return false;
     }
@@ -154,18 +219,27 @@
       item.addEventListener('dragend', handleDragEnd);
     });
 
+    // ===== Comprobar orden =====
     document.getElementById('comprobar').addEventListener('click', function() {
+      const elementos = Array.from(lista.querySelectorAll('li'));
       let correctos = 0;
-      const elementos = lista.querySelectorAll('li');
       elementos.forEach((el, i) => {
-        if (parseInt(el.getAttribute('data-orden')) === i + 1) correctos++;
+        if (parseInt(el.getAttribute('data-orden')) === i + 1) {
+          el.style.background = "#d4edda"; // verde si correcto
+          el.style.borderColor = "#28a745";
+          correctos++;
+        } else {
+          el.style.background = "#f8d7da"; // rojo si incorrecto
+          el.style.borderColor = "#dc3545";
+        }
       });
+
       if (correctos === elementos.length) {
         resultado.textContent = '¡Perfecto! Todos los eventos están en orden.';
-        resultado.style.color = 'green';
+        resultado.style.color = '#28a745';
       } else {
         resultado.textContent = `Hay ${elementos.length - correctos} evento(s) fuera de lugar.`;
-        resultado.style.color = 'red';
+        resultado.style.color = '#dc3545';
       }
     });
   </script>

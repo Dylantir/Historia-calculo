@@ -1,3 +1,54 @@
+const lista = document.getElementById('eventos');
+const resultado = document.getElementById('resultado');
+let dragSrcEl = null;
+
+function handleDragStart(e) {
+  dragSrcEl = this;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.outerHTML);
+  this.classList.add('dragging');
+}
+
+function handleDragOver(e) {
+  if (e.preventDefault) e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  return false;
+}
+
+function handleDrop(e) {
+  if (e.stopPropagation) e.stopPropagation();
+  if (dragSrcEl !== this) {
+    // Intercambiamos los nodos completos
+    const temp = this.cloneNode(true);
+    this.replaceWith(dragSrcEl.cloneNode(true));
+    dragSrcEl.replaceWith(temp);
+
+    // Reasignar eventos de drag & drop a los nuevos nodos
+    addDragEvents();
+  }
+  return false;
+}
+
+function handleDragEnd() {
+  this.classList.remove('dragging');
+}
+
+function addDragEvents() {
+  const items = lista.querySelectorAll('li');
+  items.forEach(item => {
+    item.setAttribute('draggable', true);
+    item.removeEventListener('dragstart', handleDragStart);
+    item.removeEventListener('dragover', handleDragOver);
+    item.removeEventListener('drop', handleDrop);
+    item.removeEventListener('dragend', handleDragEnd);
+
+    item.addEventListener('dragstart', handleDragStart);
+    item.addEventListener('dragover', handleDragOver);
+    item.addEventListener('drop', handleDrop);
+    item.addEventListener('dragend', handleDragEnd);
+  });
+}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -181,12 +232,13 @@
     // ===== Drag & Drop =====
     const lista = document.getElementById('eventos');
     const resultado = document.getElementById('resultado');
+
     let dragSrcEl = null;
 
     function handleDragStart(e) {
       dragSrcEl = this;
       e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/html', this.innerHTML);
+      e.dataTransfer.setData('text/html', this.outerHTML);
       this.classList.add('dragging');
     }
 
@@ -198,10 +250,14 @@
 
     function handleDrop(e) {
       if (e.stopPropagation) e.stopPropagation();
-      if (dragSrcEl != this) {
-        const temp = dragSrcEl.innerHTML;
-        dragSrcEl.innerHTML = this.innerHTML;
-        this.innerHTML = temp;
+      if (dragSrcEl !== this) {
+        // Intercambiar nodos completos
+        const temp = this.cloneNode(true);
+        this.replaceWith(dragSrcEl.cloneNode(true));
+        dragSrcEl.replaceWith(temp);
+
+        // Reasignar eventos a los nuevos nodos
+        addDragEvents();
       }
       return false;
     }
@@ -210,19 +266,30 @@
       this.classList.remove('dragging');
     }
 
-    const items = lista.querySelectorAll('li');
-    items.forEach(function(item) {
-      item.setAttribute('draggable', true);
-      item.addEventListener('dragstart', handleDragStart);
-      item.addEventListener('dragover', handleDragOver);
-      item.addEventListener('drop', handleDrop);
-      item.addEventListener('dragend', handleDragEnd);
-    });
+    function addDragEvents() {
+      const items = lista.querySelectorAll('li');
+      items.forEach(item => {
+        item.setAttribute('draggable', true);
+        item.removeEventListener('dragstart', handleDragStart);
+        item.removeEventListener('dragover', handleDragOver);
+        item.removeEventListener('drop', handleDrop);
+        item.removeEventListener('dragend', handleDragEnd);
+
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('drop', handleDrop);
+        item.addEventListener('dragend', handleDragEnd);
+      });
+    }
+
+    // Inicializar eventos
+    addDragEvents();
 
     // ===== Comprobar orden =====
     document.getElementById('comprobar').addEventListener('click', function() {
       const elementos = Array.from(lista.querySelectorAll('li'));
       let correctos = 0;
+
       elementos.forEach((el, i) => {
         if (parseInt(el.getAttribute('data-orden')) === i + 1) {
           el.style.background = "#d4edda"; // verde si correcto

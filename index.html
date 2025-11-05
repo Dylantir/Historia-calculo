@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historia del Cálculo y las Matemáticas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    ul.sortable {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    ul.sortable li {
+      padding: 10px;
+      margin: 5px 0;
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      cursor: grab;
+    }
+
+    ul.sortable li.dragging {
+      opacity: 0.5;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    #resultado {
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Historia del Cálculo y las Matemáticas</h1>
+    <nav>
+      <a href="#texto">Texto</a> |
+      <a href="#juego">Juego Línea de Tiempo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="texto">
+      <h2>Texto Narrativo</h2>
+      <p>Desde los albores de la humanidad, mucho antes de que existieran los libros o las escuelas, el ser humano ya observaba el mundo con curiosidad matemática. Hace más de <strong>5.000 años</strong>, en las civilizaciones de <strong>Egipto</strong> y <strong>Babilonia</strong>, los escribas utilizaban tablillas de arcilla y papiros para registrar cosechas, calcular impuestos y medir terrenos. En Egipto, hacia el <strong>año 2.000 a. C.</strong>, los constructores de pirámides aplicaban conocimientos de geometría empírica para mantener las proporciones perfectas de sus monumentos. En Babilonia, alrededor del <strong>1.800 a. C.</strong>, se desarrolló un sistema numérico basado en el <strong>número 60</strong>, que todavía usamos hoy en los minutos y segundos del reloj.</p>
+
+      <p>Entre los <strong>siglos VI y III a. C.</strong>, en la antigua <strong>Grecia</strong>, pensadores como <strong>Pitágoras</strong>, <strong>Euclides</strong> y <strong>Arquímedes</strong> sentaron las bases de la geometría y la lógica. Euclides, hacia el <strong>300 a. C.</strong>, escribió <em>Los Elementos</em>. Arquímedes, en el <strong>siglo III a. C.</strong>, empleó el “método de agotamiento”, anticipando ideas del cálculo integral.</p>
+
+      <p>Con la caída del Imperio Romano en el <strong>siglo V d. C.</strong>, gran parte del conocimiento matemático griego fue preservado por el <strong>mundo islámico</strong>. Entre los <strong>siglos VIII y XIII</strong>, en lugares como <strong>Bagdad</strong>, se tradujeron obras griegas y se desarrollaron nuevos conceptos. En el <strong>siglo IX</strong>, <strong>Al-Juarismi</strong> introdujo el álgebra y los matemáticos de India perfeccionaron el número cero y el sistema decimal.</p>
+
+      <p>Durante el <strong>Renacimiento europeo (siglos XV–XVI)</strong>, Descartes y Fermat establecieron la geometría analítica. En el <strong>siglo XVII</strong>, surgió el cálculo gracias a <strong>Newton</strong> y <strong>Leibniz</strong>. Newton publicó <em>Principia Mathematica</em> en <strong>1687</strong>. Durante los <strong>siglos XVIII y XIX</strong>, Euler, Lagrange, Cauchy y Riemann perfeccionaron el análisis matemático. En el <strong>siglo XX</strong>, Lebesgue y Robinson aportaron nuevos métodos de integración y análisis no estándar. Hoy, en el <strong>siglo XXI</strong>, las matemáticas son esenciales en la tecnología moderna.</p>
+    </section>
+
+    <section id="juego">
+      <h2>Juego: Ordena la Línea de Tiempo</h2>
+      <p>Arrastra los eventos para colocarlos en el orden correcto:</p>
+
+      <ul id="eventos" class="sortable">
+        <li data-orden="1">Hace más de 5.000 años: Egipto y Babilonia registran cosechas</li>
+        <li data-orden="2">2000 a. C.: Constructores egipcios aplican geometría en pirámides</li>
+        <li data-orden="3">1800 a. C.: Babilonia desarrolla sistema base 60</li>
+        <li data-orden="4">Siglos VI–III a. C.: Grecia, Pitágoras, Euclides y Arquímedes</li>
+        <li data-orden="5">300 a. C.: Euclides escribe Los Elementos</li>
+        <li data-orden="6">Siglo III a. C.: Arquímedes usa método de agotamiento</li>
+        <li data-orden="7">Siglo V d. C.: Caída del Imperio Romano</li>
+        <li data-orden="8">Siglo IX: Al-Juarismi introduce álgebra; número cero en India</li>
+        <li data-orden="9">Siglos XV–XVI: Renacimiento europeo; Descartes y Fermat</li>
+        <li data-orden="10">Siglo XVII: Surge el cálculo (Newton y Leibniz)</li>
+        <li data-orden="11">1687: Newton publica Principia Mathematica</li>
+        <li data-orden="12">Siglos XVIII–XIX: Euler, Lagrange, Cauchy y Riemann perfeccionan análisis</li>
+        <li data-orden="13">Siglo XX: Lebesgue y Robinson</li>
+        <li data-orden="14">Siglo XXI: Matemáticas en IA e ingeniería espacial</li>
+      </ul>
+
+      <button id="comprobar">Comprobar Orden</button>
+      <p id="resultado"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Dylan Tirado</p>
+  </footer>
+
+  <script>
+    const lista = document.getElementById('eventos');
+    const resultado = document.getElementById('resultado');
+    let dragSrcEl = null;
+
+    function handleDragStart(e) {
+      dragSrcEl = this;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/html', this.innerHTML);
+      this.classList.add('dragging');
+    }
+
+    function handleDragOver(e) {
+      if (e.preventDefault) e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      return false;
+    }
+
+    function handleDrop(e) {
+      if (e.stopPropagation) e.stopPropagation();
+      if (dragSrcEl != this) {
+        dragSrcEl.innerHTML = this.innerHTML;
+        this.innerHTML = e.dataTransfer.getData('text/html');
+      }
+      return false;
+    }
+
+    function handleDragEnd() {
+      this.classList.remove('dragging');
+    }
+
+    const items = lista.querySelectorAll('li');
+    items.forEach(function(item) {
+      item.setAttribute('draggable', true);
+      item.addEventListener('dragstart', handleDragStart);
+      item.addEventListener('dragover', handleDragOver);
+      item.addEventListener('drop', handleDrop);
+      item.addEventListener('dragend', handleDragEnd);
+    });
+
+    document.getElementById('comprobar').addEventListener('click', function() {
+      let correctos = 0;
+      const elementos = lista.querySelectorAll('li');
+      elementos.forEach((el, i) => {
+        if (parseInt(el.getAttribute('data-orden')) === i + 1) correctos++;
+      });
+      if (correctos === elementos.length) {
+        resultado.textContent = '¡Perfecto! Todos los eventos están en orden.';
+        resultado.style.color = 'green';
+      } else {
+        resultado.textContent = `Hay ${elementos.length - correctos} evento(s) fuera de lugar.`;
+        resultado.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>

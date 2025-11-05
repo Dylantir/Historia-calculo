@@ -101,13 +101,21 @@
   <!-- ===== Texto narrativo ===== -->
   <section id="texto">
     <h2>Texto Narrativo</h2>
-    <p>Desde los albores de la humanidad, mucho antes de que existieran los libros o las escuelas, el ser humano ya observaba el mundo con curiosidad matemática. Hace más de <strong>5.000 años</strong>, en las civilizaciones de <strong>Egipto</strong> y <strong>Babilonia</strong>, los escribas utilizaban tablillas de arcilla y papiros para registrar cosechas, calcular impuestos y medir terrenos. En Egipto, hacia el <strong>año 2.000 a. C.</strong>, los constructores de pirámides aplicaban conocimientos de geometría empírica para mantener las proporciones perfectas de sus monumentos. En Babilonia, alrededor del <strong>1.800 a. C.</strong>, se desarrolló un sistema numérico basado en el <strong>número 60</strong>, que todavía usamos hoy en los minutos y segundos del reloj.</p>
+    <p>Desde los primeros tiempos de la humanidad, el ser humano ha buscado comprender su entorno mediante la observación y la medida. Hace más de <strong>5.000 años</strong>, en la civilización de <strong>Egipto</strong>, los escribas utilizaban tablillas de arcilla y papiros para registrar las cosechas, calcular impuestos y organizar grandes obras de construcción. Hacia el año <strong>2.000 a. C.</strong>, los arquitectos aplicaban principios de geometría para construir las pirámides y templos, asegurando proporciones precisas y alineamientos astronómicos.</p>
 
-    <p>Entre los <strong>siglos VI y III a. C.</strong>, en la antigua <strong>Grecia</strong>, pensadores como <strong>Pitágoras</strong>, <strong>Euclides</strong> y <strong>Arquímedes</strong> sentaron las bases de la geometría y la lógica. Euclides, hacia el <strong>300 a. C.</strong>, escribió <em>Los Elementos</em>. Arquímedes, en el <strong>siglo III a. C.</strong>, empleó el “método de agotamiento”, anticipando ideas del cálculo integral.</p>
+    <p>En <strong>Babilonia</strong>, alrededor del <strong>1.800 a. C.</strong>, se desarrolló un sistema numérico sexagesimal basado en el número <strong>60</strong>, que aún usamos hoy para medir el tiempo. Los matemáticos babilonios resolvían problemas de comercio y astronomía mediante métodos complejos que influirían en generaciones posteriores.</p>
 
-    <p>Con la caída del Imperio Romano en el <strong>siglo V d. C.</strong>, gran parte del conocimiento matemático griego fue preservado por el <strong>mundo islámico</strong>. Entre los <strong>siglos VIII y XIII</strong>, en lugares como <strong>Bagdad</strong>, se tradujeron obras griegas y se desarrollaron nuevos conceptos. En el <strong>siglo IX</strong>, <strong>Al-Juarismi</strong> introdujo el álgebra y los matemáticos de India perfeccionaron el número cero y el sistema decimal.</p>
+    <p>En la <strong>Grecia antigua</strong>, entre los <strong>siglos VI y III a. C.</strong>, matemáticos como <strong>Pitágoras</strong>, <strong>Euclides</strong> y <strong>Arquímedes</strong> establecieron los fundamentos de la geometría, la aritmética y la lógica. Hacia <strong>300 a. C.</strong>, Euclides escribió <em>Los Elementos</em>, referencia en geometría durante más de dos mil años. Arquímedes desarrolló el “método de agotamiento” para calcular áreas y volúmenes, anticipando el cálculo integral.</p>
 
-    <p>Durante el <strong>Renacimiento europeo (siglos XV–XVI)</strong>, Descartes y Fermat establecieron la geometría analítica. En el <strong>siglo XVII</strong>, surgió el cálculo gracias a <strong>Newton</strong> y <strong>Leibniz</strong>. Newton publicó <em>Principia Mathematica</em> en <strong>1687</strong>. Durante los <strong>siglos XVIII y XIX</strong>, Euler, Lagrange, Cauchy y Riemann perfeccionaron el análisis matemático. En el <strong>siglo XX</strong>, Lebesgue y Robinson aportaron nuevos métodos de integración y análisis no estándar. Hoy, en el <strong>siglo XXI</strong>, las matemáticas son esenciales en la tecnología moderna.</p>
+    <p>Tras la caída del Imperio Romano en el <strong>siglo V d. C.</strong>, gran parte del conocimiento griego se preservó gracias al <strong>mundo islámico</strong>. Entre los <strong>siglos VIII y XIII</strong>, ciudades como <strong>Bagdad</strong> se convirtieron en centros de traducción y estudio. En el <strong>siglo IX</strong>, <strong>Al-Juarismi</strong> escribió tratados de álgebra, introduciendo métodos que dieron origen a la palabra “algoritmo”. En <strong>India</strong> se inventó el número cero y se perfeccionó el sistema decimal.</p>
+
+    <p>Durante el <strong>Renacimiento europeo</strong>, entre los <strong>siglos XV y XVI</strong>, la imprenta permitió difundir textos y conocimientos de Oriente y Grecia. Matemáticos como <strong>Descartes</strong> y <strong>Fermat</strong> desarrollaron la geometría analítica, conectando álgebra y geometría y preparando el terreno para el cálculo.</p>
+
+    <p>En el <strong>siglo XVII</strong>, surgió el cálculo gracias a <strong>Isaac Newton</strong> y <strong>Gottfried Wilhelm Leibniz</strong>. Newton publicó <em>Principia Mathematica</em> en <strong>1687</strong>, explicando la gravedad y el movimiento planetario. Leibniz creó la notación que usamos hoy, incluyendo <strong>dx</strong> e <strong>∫</strong>.</p>
+
+    <p>Durante los <strong>siglos XVIII y XIX</strong>, matemáticos como <strong>Euler</strong>, <strong>Lagrange</strong>, <strong>Cauchy</strong> y <strong>Riemann</strong> perfeccionaron el análisis matemático y lo aplicaron a la física, la mecánica y la astronomía. En el <strong>siglo XX</strong>, <strong>Lebesgue</strong> y <strong>Robinson</strong> aportaron nuevos métodos de integración y análisis no estándar.</p>
+
+    <p>Hoy, en el <strong>siglo XXI</strong>, las matemáticas y el cálculo son esenciales para la tecnología moderna, desde la inteligencia artificial hasta la ingeniería espacial. Lo que comenzó con simples marcas en piedra se ha convertido en el lenguaje universal que permite comprender el cosmos.</p>
   </section>
 
   <!-- ===== Línea de tiempo vertical ===== -->
@@ -148,7 +156,7 @@ const resultado = document.getElementById('resultado');
 // ===== Desordenar elementos al cargar =====
 function shuffleList() {
   for (let i = lista.children.length; i >= 0; i--) {
-    lista.appendChild(lista.children[Math.random() * i | 0]);
+    lista.appendChild(lista.children[Math.floor(Math.random() * i)]);
   }
 }
 shuffleList();
